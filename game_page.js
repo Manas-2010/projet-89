@@ -10,11 +10,8 @@ document.getElementById("player2").innerHTML = player2 + ":";
 document.getElementById("player1_score").innerHTML = player1_score;
 document.getElementById("player2_score").innerHTML = player2_score;
 
-document.getElementById("player_question").innerHTML = "Question turn - " ;
-document.getElementById("player_answer").innerHTML = "Answer turn - " ;
-
-document.getElementById("question1").innerHTML = player1;
-document.getElementById("answer1").innerHTML = player2
+document.getElementById("player_question").innerHTML = "Question turn - " +  player1;
+document.getElementById("player_answer").innerHTML = "Answer turn - " + player2;
 
 function send(){
     var get_num = document.getElementById("number").value;
@@ -37,13 +34,14 @@ document.getElementById("number").value = "";
 document.getElementById("number2").value = "";
 }
 
-
+var question_turn = "player1";
+var answer_turn = "player2";
 
 function check(){
     player1 = localStorage.getItem("player1_name");
     player2 = localStorage.getItem("player2_name");
 
-    var word = document.getElementById("input_check_box").value
+    var num_ans = document.getElementById("input_check_box").value
     
 
     var result =
@@ -53,47 +51,42 @@ function check(){
     
     Number(localStorage.getItem("ans2"))
 ;
-    console.log(result);
+    console.log(num_ans);
 
-if (word == result && document.getElementById("question1").innerHTML == player1){
-    player1_score = player1_score + 1;
-    document.getElementById("player1_score").innerHTML = player1_score;
-    document.getElementById("player2_score").innerHTML = player2_score;
-    
-    document.getElementById("wrong/right").innerHTML = "Correct!"
-    document.getElementById("question1").innerHTML = + player2;
-    document.getElementById("answer1").innerHTML = player1;
-
+    if (num_ans == result){
+        if (answer_turn == "player1"){
+            answer_turn = "player2";
+            document.getElementById("player_question").innerHTML = "Qusetion turn - " + player2;
+            player1_score = player1_score + 1;
+            document.getElementById("player1_score").innerHTML = player1_score;
+            document.getElementById("player_answer").innerHTML = "Answer turn - " + player1;
+            document.getElementById("wrong/right").innerHTML = "Correct!";
+        }
+        else{
+            answer_turn = "player1";
+            document.getElementById("player_question").innerHTML = "Qusetion turn - " + player1;
+            player2_score = player2_score + 1;
+            document.getElementById("player1_score").innerHTML = player2_score;
+            document.getElementById("player_answer").innerHTML = "Answer turn - " + player2;
+            document.getElementById("wrong/right").innerHTML = "Correct!";
+            }
+        }
+    else{
+        if (answer_turn == "player1"){
+            answer_turn = "player2";
+            document.getElementById("player_question").innerHTML = "Qusetion turn - " + player2;
+            player1_score = player1_score - 1;
+            document.getElementById("player_answer").innerHTML = "Answer turn - " + player1;
+            document.getElementById("player1_score").innerHTML = player1_score;
+            document.getElementById("wrong/right").innerHTML = "Wrong!";
+        }
+        else{
+            answer_turn = "player1";
+            document.getElementById("player_question").innerHTML = "Qusetion turn - " + player1;
+            document.getElementById("player_answer").innerHTML = "Answer turn - " + player2;
+            player2_score = player2_score - 1;
+            document.getElementById("player1_score").innerHTML = player2_score;
+            document.getElementById("wrong/right").innerHTML = "Wrong!";
+            }
     }
-
-if (word != result && document.getElementById("question1").innerHTML == player1){
-player1_score = player1_score - 1;
-document.getElementById("player1_score").innerHTML = player1_score;
-document.getElementById("player2_score").innerHTML = player2_score;
-
-document.getElementById("wrong/right").innerHTML = "Wrong!"
-document.getElementById("question1").innerHTML = + player2;
-document.getElementById("answer1").innerHTML = player1;
-    }
-
-if (word != result && document.getElementById("question1").innerHTML == player2){
-document.getElementById("wrong/right").innerHTML = "Wrong!"
-player2_score = player2_score - 1;
-document.getElementById("player1_score").innerHTML = player1_score;
-document.getElementById("player2_score").innerHTML = player2_score;
-
-document.getElementById("question1").innerHTML = player1;
-document.getElementById("answer1").innerHTML = player2;
-    }
-
-if (word == result && document.getElementById("question1").innerHTML == player2){
-    player1_score = player1_score + 1;
-    document.getElementById("player1_score").innerHTML = player1_score;
-    document.getElementById("player2_score").innerHTML = player2_score;
-    
-    document.getElementById("wrong/right").innerHTML = "Correct!"
-    document.getElementById("question1").innerHTML = + player1;
-    document.getElementById("answer1").innerHTML = player2;
-    }
-
 }
