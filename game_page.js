@@ -56,37 +56,41 @@ function check(){
     if (num_ans == result){
         if (answer_turn == "player1"){
             answer_turn = "player2";
-            document.getElementById("player_question").innerHTML = "Qusetion turn - " + player2;
+            question_turn = "player1"
             player1_score = player1_score + 1;
             document.getElementById("player1_score").innerHTML = player1_score;
-            document.getElementById("player_answer").innerHTML = "Answer turn - " + player1;
+            document.getElementById("player_answer").innerHTML = "Answer turn - " + player2;
             document.getElementById("wrong/right").innerHTML = "Correct!";
+            document.getElementById("player_question").innerHTML = "Qusetion turn - " + player1;
         }
         else{
             answer_turn = "player1";
-            document.getElementById("player_question").innerHTML = "Qusetion turn - " + player1;
+            question_turn = "player2";
             player2_score = player2_score + 1;
-            document.getElementById("player1_score").innerHTML = player2_score;
-            document.getElementById("player_answer").innerHTML = "Answer turn - " + player2;
+            document.getElementById("player2_score").innerHTML = player2_score;
+            document.getElementById("player_answer").innerHTML = "Answer turn - " + player1;
+            document.getElementById("player_question").innerHTML = "Qusetion turn - " + player2;
             document.getElementById("wrong/right").innerHTML = "Correct!";
             }
         }
-    else{
+        else{
         if (answer_turn == "player1"){
             answer_turn = "player2";
-            document.getElementById("player_question").innerHTML = "Qusetion turn - " + player2;
+            question_turn = "player1";
             player1_score = player1_score - 1;
-            document.getElementById("player_answer").innerHTML = "Answer turn - " + player1;
+            document.getElementById("player_answer").innerHTML = "Answer turn - " + player2;
             document.getElementById("player1_score").innerHTML = player1_score;
             document.getElementById("wrong/right").innerHTML = "Wrong!";
+            document.getElementById("player_question").innerHTML = "Qusetion turn - " + player1;
         }
         else{
             answer_turn = "player1";
+            question_turn = "player2"
+            player2_score = player2_score - 1;
+            document.getElementById("player2_score").innerHTML = player2_score;
+            document.getElementById("wrong/right").innerHTML = "Wrong!";
             document.getElementById("player_question").innerHTML = "Qusetion turn - " + player1;
             document.getElementById("player_answer").innerHTML = "Answer turn - " + player2;
-            player2_score = player2_score - 1;
-            document.getElementById("player1_score").innerHTML = player2_score;
-            document.getElementById("wrong/right").innerHTML = "Wrong!";
+              }
             }
-    }
-}
+        }
